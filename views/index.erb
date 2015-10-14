@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fortune Teller</title>
+  </head>
+
+  <body>
+    <h1>All the fortunes!</h1>
+
+    <ul class="fortunes">
+      <% fortunes.each do |fortune| %>
+        <li id="fortune_<%= fortune.id %>">
+          id: <%= fortune.id %>
+          text: <%= fortune.text %>
+        </li>
+      <% end %>
+    </ul>
+
+    <form>
+      <input id="new-user-fortune" type="text"></input>
+      <input id="submit-fortune" type="submit"></input>
+    </form>
+
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="/js/fortune.js"></script>
+  </body>
+</html>
