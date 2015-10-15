@@ -7,7 +7,7 @@ class Fortune
     def all
       result = []
       CSV.foreach(FILENAME, headers: true) do |row|
-        result << Fortune.new(row["id"], row["text"])
+        result << Fortune.new(row["id"], row["content"])
       end
       result
     end
@@ -20,20 +20,20 @@ class Fortune
       all.find { |fortune| fortune.id == id }
     end
 
-    def create(text)
+    def create(content)
       last_id = all.last.id
-      fortune = Fortune.new(last_id.to_i + 1, text)
+      fortune = Fortune.new(last_id.to_i + 1, content)
       CSV.open(FILENAME, "a") do |csv|
         csv << fortune.to_a
       end
       fortune
     end
 
-    def update(id, text)
+    def update(id, content)
       fortunes = all
       fortunes.each do |fortune|
         if fortune.id == id
-          fortune.text = text
+          fortune.content = content
           break
         end
       end
@@ -49,7 +49,7 @@ class Fortune
     private
     def write(fortunes)
       CSV.open(FILENAME, "w") do |csv|
-        csv << ["id", "text"]
+        csv << ["id", "content"]
         fortunes.each do |fortune|
           csv << fortune.to_a
         end
@@ -58,18 +58,18 @@ class Fortune
   end
 
   attr_reader :id
-  attr_accessor :text
+  attr_accessor :content
 
-  def initialize(id, text)
+  def initialize(id, content)
     @id = id
-    @text = text
+    @content = content
   end
 
   def to_json
-    { id: id, text: text }.to_json
+    { id: id, content: content }.to_json
   end
 
   def to_a
-    [id, text]
+    [id, content]
   end
 end

@@ -1,7 +1,7 @@
 // create a fortune
 // http://api.jquery.com/jquery.post/
 //
-fortune = { text: "Walk through life like a badass." };
+fortune = { content: "Walk through life like a badass." };
 $.post("/fortunes.json", fortune, function() {
   alert("New fortune accepted");
 });
@@ -19,7 +19,7 @@ $.get("/fortunes/random.json", function(data) {
 requestData = {
   method: "PUT",
   url: "/fortunes/8.json",
-  data: { text: "You are confused; but clarity will come soon." }
+  data: { content: "You are confused; but clarity will come soon." }
 };
 
 var request = $.ajax(requestData);

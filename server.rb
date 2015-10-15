@@ -27,6 +27,13 @@ get "/fortunes" do
   erb :index, locals: { fortunes: Fortune.all }
 end
 
+post "/fortunes" do
+  if params[:content]
+    Fortune.create(params[:content])
+  end
+  redirect to("/fortunes")
+end
+
 
 # RESTful JSON interface
 
@@ -46,9 +53,9 @@ get "/fortunes/:id.json" do |id|
 end
 
 post "/fortunes.json" do
-  if params[:text]
+  if params[:content]
     # 201 Created, Location: /fortunes/:id
-    fortune = Fortune.create(params[:text])
+    fortune = Fortune.create(params[:content])
 
     status 201
     headers "Location" => "/fortunes/#{fortune.id}"
@@ -63,7 +70,7 @@ put "/fortunes/:id.json" do |id|
   if fortune.nil?
     status 404
   else
-    Fortune.update(id, params[:text])
+    Fortune.update(id, params[:content])
     status 204
   end
 end

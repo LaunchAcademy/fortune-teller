@@ -1,23 +1,26 @@
-$("#new-fortune").on("click", function(event) {
+// update the random fortune page using AJAX
+//
+$("#random-fortune").on("click", function(event) {
   event.preventDefault();
   $.get("/fortunes/random.json", function(newFortune) {
-    $("#fortune").text(newFortune.text);
+    $("#fortune").text(newFortune.content);
   });
 });
 
-$("#submit-fortune").on("click", function(event) {
+// create a new fortune and update the page
+//
+$("form").on("submit", function(event) {
   event.preventDefault();
-  var userFortune = $('#new-user-fortune').val()
+  var newFortuneContent = $('#fortune-content').val()
 
   var request = $.ajax({
     method: "POST",
-    data: { text: userFortune },
+    data: { content: newFortuneContent },
     url: "/fortunes.json"
   });
 
   request.success(function() {
-    alert("Success!");
-    $("ul.fortunes").append("<li>" + userFortune + "</li>");
-    $('#new-user-fortune').val() = "";
+    $("ul.fortunes").append("<li>content: " + newFortuneContent + "</li>");
+    $('#fortune-content').val() = "";
   });
 });

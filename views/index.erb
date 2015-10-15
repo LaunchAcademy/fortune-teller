@@ -12,14 +12,17 @@
       <% fortunes.each do |fortune| %>
         <li id="fortune_<%= fortune.id %>">
           id: <%= fortune.id %>
-          text: <%= fortune.text %>
+          content: <%= fortune.content %>
         </li>
       <% end %>
     </ul>
 
-    <form>
-      <input id="new-user-fortune" type="text"></input>
-      <input id="submit-fortune" type="submit"></input>
+    <form action="/fortunes" method="post" id="fortune-form">
+      <fieldset>
+        <legend>Add a Fortune</legend>
+        <input id="fortune-content" name="content" type="text"></input>
+        <input type="submit"></input>
+      </fieldset>
     </form>
 
     <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
