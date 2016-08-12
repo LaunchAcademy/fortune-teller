@@ -1,16 +1,22 @@
+// example code
+
 // create a fortune
 // http://api.jquery.com/jquery.post/
 //
 fortune = { content: "Walk through life like a badass." };
-$.post("/fortunes.json", fortune, function() {
+$.post("/api/v1/fortunes.json", fortune, function() {
   alert("New fortune accepted");
 });
 
 // read a fortune
 // https://api.jquery.com/jquery.get/
 //
-$.get("/fortunes/random.json", function(data) {
-  alert("Read some data: " + data);
+$.get("/api/v1/fortunes/random.json", function(response) {
+  alert("Read some data: " + response.content);
+});
+
+$.get("/api/v1/fortunes/8.json", function(response) {
+  alert("Read some data: " + response.content);
 });
 
 // update a fortune
@@ -18,7 +24,7 @@ $.get("/fortunes/random.json", function(data) {
 //
 requestData = {
   method: "PUT",
-  url: "/fortunes/8.json",
+  url: "/api/v1/fortunes/8.json",
   data: { content: "You are confused; but clarity will come soon." }
 };
 
@@ -32,7 +38,7 @@ request.done(function(msg) {
 //
 requestData = {
   method: "DELETE",
-  url: "/fortunes/8.json"
+  url: "/api/v1/fortunes/8.json"
 };
 
 var request = $.ajax(requestData);

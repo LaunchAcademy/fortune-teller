@@ -2,7 +2,7 @@
 //
 $("#random-fortune").on("click", function(event) {
   event.preventDefault();
-  $.get("/fortunes/random.json", function(newFortune) {
+  $.get("/api/v1/fortunes/random.json", function(newFortune) {
     $("#fortune").text(newFortune.content);
   });
 });
@@ -16,7 +16,7 @@ $("form").on("submit", function(event) {
   var request = $.ajax({
     method: "POST",
     data: { content: newFortuneContent },
-    url: "/fortunes.json"
+    url: "/api/v1/fortunes.json"
   });
 
   request.success(function() {

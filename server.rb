@@ -37,12 +37,12 @@ end
 
 # RESTful JSON interface
 
-get "/fortunes.json" do
+get "/api/v1/fortunes.json" do
   fortunes = Fortune.all
   fortunes.map(&:to_json).to_json
 end
 
-get "/fortunes/:id.json" do |id|
+get "/api/v1/fortunes/:id.json" do |id|
   fortune = Fortune.read(id)
   if fortune
     status 200
@@ -52,7 +52,7 @@ get "/fortunes/:id.json" do |id|
   end
 end
 
-post "/fortunes.json" do
+post "/api/v1/fortunes.json" do
   if params[:content]
     # 201 Created, Location: /fortunes/:id
     fortune = Fortune.create(params[:content])
@@ -64,7 +64,7 @@ post "/fortunes.json" do
   end
 end
 
-put "/fortunes/:id.json" do |id|
+put "/api/v1/fortunes/:id.json" do |id|
   # 204 No Content, or 404 Not Found if id dne
   fortune = Fortune.read(id)
   if fortune.nil?
@@ -75,7 +75,7 @@ put "/fortunes/:id.json" do |id|
   end
 end
 
-delete "/fortunes/:id.json" do |id|
+delete "/api/v1/fortunes/:id.json" do |id|
   # 200 OK, or 404 Not Found if id dne
   fortune = Fortune.read(id)
   if fortune.nil?
