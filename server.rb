@@ -5,6 +5,8 @@ require "./fortune"
 
 require "pry"
 
+set :bind, '0.0.0.0'  # bind to all interfaces
+
 get "/" do
   redirect to("/fortunes/random")
 end
