@@ -40,7 +40,6 @@ end
 # RESTful JSON interface
 
 get "/api/v1/fortunes.json" do
-  binding.pry
   fortunes = Fortune.all
   fortunes.map(&:to_json).to_json
 end
