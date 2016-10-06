@@ -1,8 +1,8 @@
-// update the random fortune page using AJAX
+/// update the random fortune page using AJAX
 //
 $("#random-fortune").on("click", function(event) {
   event.preventDefault();
-  $.get("/api/v1/fortunes/random.json", function(newFortune) {
+  $.get("/fortunes/random.json", function(newFortune) {
     $("#fortune").text(newFortune.content);
   });
 });
@@ -19,8 +19,8 @@ $("form").on("submit", function(event) {
     url: "/api/v1/fortunes.json"
   });
 
-  request.success(function() {
-    $("ul.fortunes").append("<li>content: " + newFortuneContent + "</li>");
+  request.done(function() {
+    $("ul.fortunes").append("<li>" + newFortuneContent + "</li>");
     $('#fortune-content').val() = "";
   });
 });

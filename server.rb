@@ -40,6 +40,7 @@ end
 # RESTful JSON interface
 
 get "/api/v1/fortunes.json" do
+  binding.pry
   fortunes = Fortune.all
   fortunes.map(&:to_json).to_json
 end
@@ -55,7 +56,7 @@ get "/api/v1/fortunes/:id.json" do |id|
 end
 
 post "/api/v1/fortunes.json" do
-  if params[:content]
+  unless params[:content].nil? || params[:content].empty?
     # 201 Created, Location: /fortunes/:id
     fortune = Fortune.create(params[:content])
 
