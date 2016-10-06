@@ -30,7 +30,7 @@ get "/fortunes" do
 end
 
 post "/fortunes" do
-  if params[:content]
+  unless params[:content].nil? || params[:content].empty?
     Fortune.create(params[:content])
   end
   redirect to("/fortunes")
