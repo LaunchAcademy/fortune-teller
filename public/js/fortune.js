@@ -1,8 +1,8 @@
-/// update the random fortune page using AJAX
+// update the random fortune page using AJAX
 //
 $("#random-fortune").on("click", function(event) {
   event.preventDefault();
-  $.get("/fortunes/random.json", function(newFortune) {
+  $.get("/api/v1/fortunes/random.json", function(newFortune) {
     $("#fortune").text(newFortune.content);
   });
 });

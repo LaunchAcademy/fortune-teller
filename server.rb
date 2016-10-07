@@ -44,6 +44,11 @@ get "/api/v1/fortunes.json" do
   fortunes.map(&:to_json).to_json
 end
 
+get "/api/v1/fortunes/random.json" do
+  content_type :json
+  Fortune.sample.to_json
+end
+
 get "/api/v1/fortunes/:id.json" do |id|
   fortune = Fortune.read(id)
   if fortune
