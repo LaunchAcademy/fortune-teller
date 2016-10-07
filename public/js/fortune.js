@@ -11,7 +11,7 @@ $("#random-fortune").on("click", function(event) {
 //
 $("form").on("submit", function(event) {
   event.preventDefault();
-  var newFortuneContent = $('#fortune-content').val()
+  var newFortuneContent = $('#fortune-content').val();
 
   var request = $.ajax({
     method: "POST",
@@ -19,8 +19,8 @@ $("form").on("submit", function(event) {
     url: "/api/v1/fortunes.json"
   });
 
-  request.success(function() {
-    $("ul.fortunes").append("<li>content: " + newFortuneContent + "</li>");
+  request.done(function() {
+    $("ul.fortunes").append("<li>" + newFortuneContent + "</li>");
     $('#fortune-content').val() = "";
   });
 });

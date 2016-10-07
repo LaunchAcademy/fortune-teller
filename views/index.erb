@@ -2,9 +2,8 @@
 
 <ul class="fortunes">
   <% fortunes.each do |fortune| %>
-    <li id="fortune_<%= fortune.id %>">
-      id: <%= fortune.id %>
-      content: <%= fortune.content %>
+    <li>
+      <%= fortune.content %>
     </li>
   <% end %>
 </ul>
